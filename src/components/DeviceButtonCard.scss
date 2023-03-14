@@ -1,0 +1,15 @@
+.device-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    img{
+        width: 100%;
+    }
+    
+}
+
+.device-button:hover{
+    cursor: pointer;
+    background-color: rgba(0,0,0,0.1);
+}

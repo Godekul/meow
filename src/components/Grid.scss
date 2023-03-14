@@ -1,0 +1,59 @@
+:root{
+    --main-radius : 5px;
+    --main-padding: 5px;
+}
+
+
+.containerGrid{
+    display:grid;
+    height:100vh;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 02fr 1.5fr 1.2fr 0.8fr;
+    grid-template-areas: 
+    "sidebar main main main"
+    "sidebar main main main"
+    "sidebar footer footer footer";
+    grid-gap: 0.2rem;
+    font-family: "Inter",sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #222221;
+    text-align: center;
+}
+
+main{
+    background-color: #c0f5f3;
+    grid-area:main;
+    border-radius: var(--main-radius);
+    border-top: var(--main-padding);
+}
+
+#sidebar{
+    background-color: #c0f5f3;
+    grid-area:sidebar;
+    border-radius: var(--main-radius);
+    border-top: var(--main-padding);
+}
+
+footer{
+    background-color: #c0f5f3;
+    grid-area:footer;
+    border-radius: var(--main-radius);
+    border-top: var(--main-padding);
+}
+
+@media only screen and (max-width:550px){
+   .containerGrid{
+    grid-template-columns: 1fr;
+    grid-template-rows: 2.2fr 3fr 1.2fr;
+    grid-template-areas:
+    "sidebar"
+    "main"
+    "footer";
+   } 
+}
+
+h4{
+    padding :20px;
+}
