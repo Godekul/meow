@@ -21,21 +21,24 @@ export function DeviceButtonCard(props: DeviceButtonCardProps) {
 	};
 
 	return (
-		<Col className="device-button" xs={6}>
+		<Col
+			className="device-button"
+			xs={6}
+			draggable={true}
+			onDragStart={(event) => {
+				event.dataTransfer.setData(
+					'device-node',
+					JSON.stringify({
+						type: props.deviceType.type,
+						inputs: props.deviceType.inputs,
+						outputs: props.deviceType.outputs,
+					} as DeviceType)
+				);
+			}}>
 			<img
 				src={typeToImg(props.deviceType.type)}
 				alt={props.deviceType.type}
-				// draggable={true}
-				onDragStart={(event) => {
-					event.dataTransfer.setData(
-						'device-node',
-						JSON.stringify({
-							type: props.deviceType.type,
-							inputs: props.deviceType.inputs,
-							outputs: props.deviceType.outputs,
-						} as DeviceType)
-					);
-				}}
+				draggable={true}
 			/>
 		</Col>
 	);

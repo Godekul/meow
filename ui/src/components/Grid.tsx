@@ -6,6 +6,7 @@ import deviceTypes from '../data/deviceTypes.json';
 import { SelectedDevicesChain } from './SelectedDevicesChain';
 import items from '../data/items.json';
 import createEngine, {
+	DefaultLabelModel,
 	DefaultLinkModel,
 	DefaultNodeModel,
 	DiagramEngine,
@@ -48,6 +49,11 @@ const Grid = () => {
 		setDevices({ ...devices, [deviceInfo.id]: deviceInfo });
 	};
 
+	const updateDevices = (devices: { [id: string]: DeviceInfo }) => {
+		setDevices(devices);
+		alert(JSON.stringify(devices));
+	};
+
 	return (
 		<>
 			<div className="containerGrid">
@@ -69,7 +75,11 @@ const Grid = () => {
 					</div>
 				</section>
 				<footer>
-					<Results model={model} devices={devices} />
+					<Results
+						model={model}
+						devices={devices}
+						updateDevices={updateDevices}
+					/>
 				</footer>
 			</div>
 		</>

@@ -9,10 +9,12 @@ import './SideBar.scss';
 type ResultsProps = {
 	model: DiagramModel;
 	devices: { [id: string]: DeviceInfo };
+	updateDevices: (devices: { [id: string]: DeviceInfo }) => void;
 };
 
 export function Results(props: ResultsProps) {
 	const handleResults = () => {
+		const connectedDevices: Set<string> = new Set();
 		const links = props.model.getLinks();
 		for (const link of links) {
 			const sourceDevice = link.getSourcePort().getNode().getID();
@@ -27,8 +29,10 @@ export function Results(props: ResultsProps) {
 				sourceDevice: sourceDevice,
 				targetDevice: targetDevice,
 			});
+			connectedDevices.add(sourceDevice);
+			connectedDevices.add(targetDevice);
 		}
-		alert(JSON.stringify(props.devices));
+		props.updateDevices(props.devices);
 	};
 
 	return (
