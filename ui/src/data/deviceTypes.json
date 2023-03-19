@@ -1,0 +1,22 @@
+[
+	{
+		"type": "Amplifier",
+		"outputs": 1,
+		"inputs": 1
+	},
+	{
+		"type": "Attenuator",
+		"outputs": 1,
+		"inputs": 1
+	},
+	{
+		"type": "Combiner",
+		"outputs": 1,
+		"inputs": 2
+	},
+	{
+		"type": "Divider",
+		"outputs": 2,
+		"inputs": 1
+	}
+]
