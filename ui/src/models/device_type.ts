@@ -1,5 +1,6 @@
-interface DeviceType{
-    name: string;
-    imgUrl: string;
+interface DeviceType {
+    type: string;
+    inputs: number;
+    outputs: number;
 }
 export default DeviceType;

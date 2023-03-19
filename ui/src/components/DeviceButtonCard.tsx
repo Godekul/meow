@@ -1,30 +1,42 @@
-import { useState } from "react";
-import { Col } from "react-bootstrap";
-import DeviceType from "../models/device_type";
-import "./DeviceButtonCard.scss";
-import { DeviceModal } from "./DeviceModal";
+import { useState } from 'react';
+import { Col } from 'react-bootstrap';
+import DeviceInfo from '../models/device_info';
+import DeviceType from '../models/device_type';
+import './DeviceButtonCard.scss';
+import { DeviceModal } from './DeviceModal';
 
 type DeviceButtonCardProps = {
-  deviceType: DeviceType;
-  selectedDevices: number[];
-  setSelectedDevices: (devices: any) => void;
+	deviceType: DeviceType;
 };
 
 export function DeviceButtonCard(props: DeviceButtonCardProps) {
-  // const [show, setShow] = useState(false);
+	const typeToImg = (type: string) => {
+		const imageTypes: { [type: string]: string } = {
+			Amplifier: '/imgs/amplifier.jpg',
+			Attenuator: '/imgs/attenuator.jpg',
+			Combiner: '/imgs/combiner.jpg',
+			Divider: '/imgs/divider.jpg',
+		};
+		return imageTypes[type] || '';
+	};
 
-  const selectDevice = (device: any) => {
-    const meow = [...props.selectedDevices, device];
-    props.setSelectedDevices(meow);
-  };
-
-  return (
-    <Col
-      className="device-button"
-      xs={6}
-      onClick={() => selectDevice(props.deviceType)}
-    >
-      <img src={props.deviceType.imgUrl} alt={props.deviceType.name} />
-    </Col>
-  );
+	return (
+		<Col className="device-button" xs={6}>
+			<img
+				src={typeToImg(props.deviceType.type)}
+				alt={props.deviceType.type}
+				// draggable={true}
+				onDragStart={(event) => {
+					event.dataTransfer.setData(
+						'device-node',
+						JSON.stringify({
+							type: props.deviceType.type,
+							inputs: props.deviceType.inputs,
+							outputs: props.deviceType.outputs,
+						} as DeviceType)
+					);
+				}}
+			/>
+		</Col>
+	);
 }
